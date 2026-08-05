@@ -1,0 +1,57 @@
+/* Cornerstone · McBride brand layer */
+:root {
+  --ink: #122342;
+  --muted: #64748b;
+  --line: #dfe7f1;
+  --soft: #f3f7fc;
+  --green: #123a76;
+  --green2: #176aad;
+  --cream: #f7f9fc;
+  --purple: #3d86d1;
+  --orange: #27a9e8;
+  --shadow: 0 16px 50px rgba(9, 39, 86, .14);
+}
+body { background: #f7f9fc; color: var(--ink); }
+.sidebar {
+  background: #0b2d5e url('mcbride-banner.png') 24% center / auto 100% no-repeat;
+  color: #dcecff;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,27,65,.26), rgba(5,27,65,.88));
+  pointer-events: none;
+}
+.sidebar > * { position: relative; }
+.brand { letter-spacing: -.5px; }
+.brand-mark {
+  border-radius: 7px;
+  background: #fff;
+  color: #123a76;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 850;
+}
+.nav-item { color: #c3d8ef; }
+.nav-item b { background: #1e5793; }
+.nav-item:hover, .nav-item.active { background: rgba(57,142,215,.3); color: #fff; }
+.nav-label { color: #85b6df; }
+.workspace { border: 1px solid rgba(255,255,255,.1); background: rgba(10,42,84,.72); }
+.workspace-logo { background: #fff; color: #123a76; }
+.workspace small, .profile small { color: #98b9da; }
+.profile { border-top-color: rgba(139,190,231,.25); }
+.avatar { background: #dceeff; color: #123a76; }
+.profile button { color: #9fc1df; }
+.ideas-hero {
+  background: linear-gradient(100deg, rgba(8,37,82,.97), rgba(23,82,145,.84)), url('mcbride-banner.png') center / cover;
+}
+.ideas-hero .primary { background: #fff; color: #123a76; }
+.eyebrow { color: #b9dcf6; }
+.primary { background: #123a76; }
+.primary:hover { background: #19539a; }
+.post-card.li { border-left-color: #176aad; }
+.post-card.tt { border-left-color: #122342; }
+.post-card.x { border-left-color: #5c79a1; }
+.thumb { background: linear-gradient(145deg, #8bc7ee, #154f8c); }
+.status { background: #e4f0fb; color: #15558f; }

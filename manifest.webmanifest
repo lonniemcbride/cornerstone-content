@@ -1,0 +1,13 @@
+{
+  "name": "Cornerstone Content Operations",
+  "short_name": "Cornerstone",
+  "description": "Plan, collaborate on, and publish content from one workspace.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f9fc",
+  "theme_color": "#0b2d5e",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

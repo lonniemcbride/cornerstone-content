@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b2d5e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Cornerstone" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src https: http://127.0.0.1:*; object-src 'none'; base-uri 'none'; form-action 'self'" />
+  <title>Cornerstone — Content Operations</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="brand.css" />
+  <link rel="stylesheet" href="integrations.css" />
+  <link rel="stylesheet" href="vault.css" />
+  <link rel="stylesheet" href="collaboration.css" />
+  <link rel="stylesheet" href="install.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">C</span><span>Cornerstone</span></div>
+      <nav>
+        <button class="nav-item active" data-view="calendar"><span>◫</span> Calendar</button>
+        <button class="nav-item" data-view="content"><span>▤</span> Content <b id="contentCount">6</b></button>
+        <button class="nav-item" data-view="ideas"><span>✦</span> Ideas</button>
+        <button class="nav-item" data-view="assets"><span>◇</span> Assets</button>
+        <button class="nav-item" data-view="integrations"><span>⌘</span> Integrations <b id="integrationCount">0</b></button>
+        <button class="nav-item" data-view="workspaces"><span>♙</span> Workspaces</button>
+      </nav>
+      <div class="nav-label">WORKSPACE</div>
+      <button class="workspace"><span class="workspace-logo">MC</span><span><strong>McBride</strong><small>4 channels connected</small></span><i>⌄</i></button>
+      <div class="sidebar-bottom">
+        <button class="nav-item install-app" id="installAppBtn"><span>⇩</span> Install Cornerstone</button>
+        <button class="nav-item"><span>?</span> Help center</button>
+        <div class="profile"><div class="avatar">AL</div><div><strong>Alex Lin</strong><small>Content lead</small></div><button>•••</button></div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><h1 id="pageTitle">Content calendar</h1><p id="pageSubtitle">Plan, polish, and publish — all in one place.</p></div>
+        <div class="top-actions"><button class="icon-button" id="notifyBtn" aria-label="Notifications">♢<span class="notification-dot"></span></button><button class="primary" id="newPostBtn"><span>＋</span> New content</button></div>
+      </header>
+
+      <section id="calendarView" class="view active">
+        <div class="toolbar">
+          <div class="date-nav"><button id="prevWeek">‹</button><button id="todayBtn">Today</button><button id="nextWeek">›</button><strong id="weekLabel">August 3 – 9, 2026</strong></div>
+          <div class="toolbar-right"><button class="filter-button" id="filterBtn">☷ All channels <span>⌄</span></button><div class="segmented"><button class="active">Week</button><button>Month</button></div></div>
+        </div>
+        <div class="calendar-card">
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+        <div class="up-next">
+          <div class="section-heading"><div><h2>Up next</h2><p>Your next three scheduled posts</p></div><button class="text-button" id="viewAllBtn">View all →</button></div>
+          <div class="up-next-grid" id="upNextGrid"></div>
+        </div>
+      </section>
+
+      <section id="contentView" class="view">
+        <div class="section-heading"><div><h2>Content library</h2><p>Everything scheduled, drafted, and published.</p></div><div class="search"><span>⌕</span><input id="contentSearch" placeholder="Search content" /></div></div>
+        <div class="content-table" id="contentTable"></div>
+      </section>
+
+      <section id="ideasView" class="view">
+        <div class="ideas-hero"><span class="eyebrow">✦ CREATIVE COPILOT</span><h2>Turn what’s working into what’s next.</h2><p>Cornerstone looks at your scheduled topics and suggests fresh angles for your audience.</p><button class="primary" id="generateIdeasBtn">✦ Generate new ideas</button></div>
+        <div class="ideas-grid" id="ideasGrid"></div>
+      </section>
+
+      <section id="assetsView" class="view">
+        <div class="asset-drop" id="assetDrop"><div class="upload-icon">⇧</div><h2>Bring your content in</h2><p>Drop images, videos, PDFs, or CSV files here</p><button class="secondary" id="browseBtn">Choose files</button><input type="file" id="fileInput" multiple hidden /></div>
+        <div class="section-heading"><div><h2>Asset library</h2><p id="assetCount">4 files</p></div></div>
+        <div class="asset-grid" id="assetGrid"></div>
+      </section>
+
+      <section id="integrationsView" class="view">
+        <div class="integration-hero">
+          <div><span class="eyebrow">CORNERSTONE CONNECT</span><h2>Bring your own intelligence.</h2><p>Connect model providers, publishing APIs, and MCP servers to extend your content workflow.</p></div>
+          <button class="primary" id="addIntegrationBtn">＋ Add integration</button>
+        </div>
+        <div class="security-note"><span>◉</span><div><strong>AES-256 encrypted credential vault</strong><p>Keys are authenticated-encrypted at rest. Your non-exportable vault key and decrypted secrets exist only in memory.</p></div><button class="secondary vault-button" id="vaultButton">Set up vault</button></div>
+        <div class="integration-section"><div class="section-heading"><div><h2>API providers</h2><p>AI models, social platforms, and custom REST services</p></div></div><div class="integration-grid" id="apiGrid"></div></div>
+        <div class="integration-section"><div class="section-heading"><div><h2>MCP servers</h2><p>Tools and context available to your Cornerstone workspace</p></div><button class="secondary" id="addMcpBtn">＋ Connect MCP</button></div><div class="mcp-list" id="mcpList"></div></div>
+      </section>
+
+      <section id="workspacesView" class="view">
+        <div class="workspace-hero"><div><span class="eyebrow">TEAM COLLABORATION</span><h2>Build your content team.</h2><p>Create focused spaces, invite collaborators, and control who can publish.</p></div><button class="primary" id="createWorkspaceBtn">＋ New workspace</button></div>
+        <div class="workspace-layout">
+          <aside class="workspace-list-panel"><div class="panel-title"><strong>Your workspaces</strong><small id="workspaceTotal">1 workspace</small></div><div id="workspaceList"></div></aside>
+          <div class="workspace-detail" id="workspaceDetail"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <aside class="composer" id="composer">
+    <div class="composer-head"><div><span class="eyebrow">CONTENT COMPOSER</span><h2 id="composerTitle">Create content</h2></div><button class="close-button" id="closeComposer">×</button></div>
+    <div class="composer-body">
+      <label>Channels</label><div class="channel-picker" id="channelPicker"><button data-channel="Instagram" class="selected ig">◎ Instagram</button><button data-channel="LinkedIn" class="li">in LinkedIn</button><button data-channel="TikTok" class="tt">♪ TikTok</button><button data-channel="X" class="x">𝕏 X</button></div>
+      <label for="postTitle">Internal title</label><input id="postTitle" class="field" placeholder="Give this post a name" />
+      <label for="postCaption">Caption</label><div class="caption-wrap"><textarea id="postCaption" placeholder="Write something people will remember..."></textarea><div class="caption-tools"><button id="improveBtn">✦ Improve</button><span id="charCount">0 / 2,200</span></div></div>
+      <label>Media</label><button class="media-drop" id="mediaDrop"><span>＋</span><strong>Add photos or video</strong><small>or choose from your asset library</small></button>
+      <div class="field-row"><div><label for="postDate">Publish date</label><input type="date" id="postDate" class="field" /></div><div><label for="postTime">Time</label><input type="time" id="postTime" class="field" /></div></div>
+      <label for="postOwner">Owner</label><select id="postOwner" class="field"><option>Alex Lin</option><option>Maya Ortiz</option><option>Jordan Chen</option></select>
+      <div class="reminder-row"><div><strong>Notify owner</strong><small>Send a reminder before it’s time to post</small></div><select id="reminder" class="mini-select"><option>15 min before</option><option>1 hour before</option><option>1 day before</option></select><input id="notifyToggle" type="checkbox" checked /></div>
+    </div>
+    <div class="composer-footer"><button class="secondary" id="saveDraftBtn">Save draft</button><button class="primary" id="scheduleBtn">Schedule content</button></div>
+  </aside>
+
+  <div class="popover notifications" id="notificationPanel"><div class="popover-head"><strong>Notifications</strong><button id="markRead">Mark all read</button></div><div id="notificationList"></div></div>
+  <div class="modal" id="integrationModal">
+    <div class="modal-head"><div><span class="eyebrow">NEW CONNECTION</span><h2 id="integrationModalTitle">Add integration</h2></div><button class="close-button" id="closeIntegrationModal">×</button></div>
+    <div class="modal-body">
+      <label for="integrationType">Connection type</label><select id="integrationType" class="field"><option value="api">API provider</option><option value="mcp">MCP server</option></select>
+      <label for="integrationName">Name</label><input id="integrationName" class="field" placeholder="e.g. OpenAI, LinkedIn, My research server" />
+      <div id="apiFields"><label for="integrationKey">API key</label><div class="secret-field"><input id="integrationKey" type="password" class="field" placeholder="sk-••••••••••••" /><button id="revealKey" type="button">Show</button></div><label for="integrationBaseUrl">Base URL <small>optional</small></label><input id="integrationBaseUrl" class="field" placeholder="https://api.example.com/v1" /></div>
+      <div id="mcpFields" hidden><label for="mcpTransport">Transport</label><select id="mcpTransport" class="field"><option value="http">Streamable HTTP</option><option value="sse">SSE</option></select><label for="mcpUrl">Server URL</label><input id="mcpUrl" class="field" placeholder="https://mcp.example.com/mcp" /><label for="mcpToken">Bearer token <small>optional</small></label><div class="secret-field"><input id="mcpToken" type="password" class="field" placeholder="••••••••••••" /></div></div>
+      <div class="connection-options"><label><input id="enableConnection" type="checkbox" checked /> Enable immediately</label><label><input id="allowTools" type="checkbox" checked /> Allow tools in ideation</label></div>
+    </div>
+    <div class="modal-footer"><button class="secondary" id="cancelIntegration">Cancel</button><button class="primary" id="saveIntegration">Save connection</button></div>
+  </div>
+  <div class="toast" id="toast"><span>✓</span><div><strong id="toastTitle">Content scheduled</strong><small id="toastText">Your post is ready to go.</small></div></div>
+  <div class="invite-gate" id="inviteGate" hidden>
+    <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow">YOU’VE BEEN INVITED</span><h1>Join <span id="gateWorkspaceName">a workspace</span></h1><p id="gateInviteCopy">Accept your invitation to collaborate on content, campaigns, and publishing.</p><div class="gate-role">Your role <strong id="gateRole">Editor</strong></div><label for="gateName">Your name</label><input id="gateName" class="field" placeholder="Full name" /><button class="primary" id="acceptInviteBtn">Accept invitation</button><small>By continuing, you agree to your organization’s workspace policies.</small></div>
+  </div>
+  <div class="modal vault-modal" id="vaultModal">
+    <div class="modal-head"><div><span class="eyebrow">SECURE CREDENTIAL VAULT</span><h2 id="vaultModalTitle">Create your vault</h2></div><button class="close-button" id="closeVaultModal">×</button></div>
+    <div class="modal-body">
+      <div class="encryption-badge"><span>◆</span><div><strong>AES-256-GCM</strong><small>PBKDF2-SHA-256 · 600,000 iterations · random salt and nonce</small></div></div>
+      <p class="vault-copy" id="vaultCopy">Choose a strong master password. It never leaves this device and cannot be recovered.</p>
+      <label for="vaultPassword">Master password</label><input id="vaultPassword" type="password" class="field" autocomplete="new-password" placeholder="At least 12 characters" />
+      <div id="vaultConfirmWrap"><label for="vaultConfirm">Confirm password</label><input id="vaultConfirm" type="password" class="field" autocomplete="new-password" placeholder="Repeat master password" /></div>
+      <div class="password-meter"><span id="passwordMeter"></span></div><small class="password-hint" id="passwordHint">Use 12+ characters with a mix of words, numbers, and symbols.</small>
+    </div>
+    <div class="modal-footer"><button class="secondary" id="cancelVault">Cancel</button><button class="primary" id="submitVault">Create encrypted vault</button></div>
+  </div>
+  <div class="modal" id="inviteModal">
+    <div class="modal-head"><div><span class="eyebrow">COLLABORATE</span><h2>Invite people to <span id="inviteWorkspaceName">McBride</span></h2></div><button class="close-button" id="closeInviteModal">×</button></div>
+    <div class="modal-body">
+      <label for="inviteEmails">Email addresses</label><textarea id="inviteEmails" class="invite-emails" placeholder="name@company.com, teammate@company.com"></textarea><small class="field-help">Separate multiple addresses with commas.</small>
+      <label for="inviteRole">Role</label><select id="inviteRole" class="field"><option value="Editor">Editor — create and edit content</option><option value="Publisher">Publisher — approve and publish</option><option value="Viewer">Viewer — view and comment</option><option value="Admin">Admin — manage workspace and members</option></select>
+      <label for="inviteMessage">Personal message <small>optional</small></label><textarea id="inviteMessage" class="invite-message" placeholder="Join us in Cornerstone to plan our upcoming content..."></textarea>
+      <div class="invite-summary"><span>✉</span><p>Invites expire after 7 days. Pending invitations can be revoked at any time.</p></div>
+    </div>
+    <div class="modal-footer"><button class="secondary" id="cancelInvite">Cancel</button><button class="primary" id="sendInvites">Send invitations</button></div>
+  </div>
+  <div class="modal" id="workspaceModal">
+    <div class="modal-head"><div><span class="eyebrow">NEW WORKSPACE</span><h2>Create a workspace</h2></div><button class="close-button" id="closeWorkspaceModal">×</button></div>
+    <div class="modal-body"><label for="newWorkspaceName">Workspace name</label><input id="newWorkspaceName" class="field" placeholder="e.g. Client campaigns" /><label for="newWorkspacePurpose">Purpose <small>optional</small></label><textarea id="newWorkspacePurpose" class="invite-message" placeholder="What will your team create here?"></textarea></div>
+    <div class="modal-footer"><button class="secondary" id="cancelWorkspace">Cancel</button><button class="primary" id="saveWorkspace">Create workspace</button></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
