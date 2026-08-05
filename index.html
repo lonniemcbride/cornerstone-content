@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="install.css" />
   <link rel="stylesheet" href="auth.css?v=3" />
   <link rel="stylesheet" href="settings.css?v=4" />
+  <link rel="stylesheet" href="management.css?v=7" />
 </head>
 <body>
   <div class="app-shell">
@@ -101,7 +102,7 @@
           <div class="settings-content">
             <section class="settings-panel active" data-settings-panel="account"><div class="settings-heading"><h2>Account information</h2><p>Manage your identity across Cornerstone workspaces.</p></div><div class="account-avatar-row"><div class="member-avatar settings-avatar" id="settingsAvatar">AL</div><div><strong id="settingsDisplayName">Alex Lin</strong><small>Profile photo support requires connected file storage.</small></div></div><div class="settings-form"><label for="settingsName">Full name</label><input id="settingsName" class="field" /><label for="settingsEmail">Email address</label><input id="settingsEmail" type="email" class="field" /><label>Account role</label><input id="settingsRole" class="field" disabled /><button class="primary" id="saveAccountSettings">Save account</button></div></section>
             <section class="settings-panel" data-settings-panel="security"><div class="settings-heading"><h2>Security</h2><p>Update your password and control active sessions.</p></div><div class="settings-form"><label for="currentPassword">Current password</label><input id="currentPassword" type="password" class="field" autocomplete="current-password" /><label for="newPassword">New password</label><input id="newPassword" type="password" class="field" autocomplete="new-password" placeholder="At least 12 characters" /><label for="confirmNewPassword">Confirm new password</label><input id="confirmNewPassword" type="password" class="field" autocomplete="new-password" /><button class="primary" id="changePasswordBtn">Change password</button></div><div class="danger-zone"><div><strong>Sign out of this device</strong><p>Locks your vault and clears the current session.</p></div><button class="secondary" id="settingsLogoutBtn">Log out</button></div></section>
-            <section class="settings-panel" data-settings-panel="admin"><div class="settings-heading"><h2>Admin controls</h2><p>Set workspace defaults and collaboration guardrails.</p></div><div class="setting-row"><div><strong>Require approval before publishing</strong><p>Editors submit content for publisher or admin review.</p></div><input id="approvalRequired" type="checkbox" checked /></div><div class="setting-row"><div><strong>Allow members to invite collaborators</strong><p>Editors and publishers can create invitation links.</p></div><input id="memberInvites" type="checkbox" /></div><div class="setting-row"><div><strong>Default invitation role</strong><p>Applied when a role is not selected manually.</p></div><select id="defaultInviteRole" class="mini-select"><option>Viewer</option><option>Editor</option><option>Publisher</option></select></div><button class="primary settings-save" id="saveAdminSettings">Save admin controls</button></section>
+            <section class="settings-panel" data-settings-panel="admin"><div class="settings-heading"><h2>Admin controls</h2><p>Set workspace defaults and collaboration guardrails.</p></div><div class="setting-row"><div><strong>Require approval before publishing</strong><p>Editors submit content for publisher or admin review.</p></div><input id="approvalRequired" type="checkbox" checked /></div><div class="setting-row"><div><strong>Allow members to invite collaborators</strong><p>Editors and publishers can create invitation links.</p></div><input id="memberInvites" type="checkbox" /></div><div class="setting-row"><div><strong>Default invitation role</strong><p>Applied when a role is not selected manually.</p></div><select id="defaultInviteRole" class="mini-select"><option>Viewer</option><option>Editor</option><option>Publisher</option><option>Admin</option></select></div><button class="primary settings-save" id="saveAdminSettings">Save admin controls</button></section>
             <section class="settings-panel" data-settings-panel="accessibility"><div class="settings-heading"><h2>Accessibility</h2><p>Adjust Cornerstone to make it more comfortable to use.</p></div><div class="setting-row"><div><strong>Larger text</strong><p>Increase interface text and control sizes.</p></div><input id="largeTextSetting" type="checkbox" /></div><div class="setting-row"><div><strong>High contrast</strong><p>Strengthen borders and foreground contrast.</p></div><input id="highContrastSetting" type="checkbox" /></div><div class="setting-row"><div><strong>Reduce motion</strong><p>Minimize transitions and animated movement.</p></div><input id="reducedMotionSetting" type="checkbox" /></div><div class="setting-row"><div><strong>Underline interactive text</strong><p>Make text links easier to distinguish.</p></div><input id="underlineLinksSetting" type="checkbox" /></div><button class="primary settings-save" id="saveAccessibilitySettings">Save accessibility</button></section>
           </div>
         </div>
@@ -121,7 +122,7 @@
       <label for="postOwner">Owner</label><select id="postOwner" class="field"><option>Alex Lin</option><option>Maya Ortiz</option><option>Jordan Chen</option></select>
       <div class="reminder-row"><div><strong>Notify owner</strong><small>Send a reminder before it’s time to post</small></div><select id="reminder" class="mini-select"><option>15 min before</option><option>1 hour before</option><option>1 day before</option></select><input id="notifyToggle" type="checkbox" checked /></div>
     </div>
-    <div class="composer-footer"><button class="secondary" id="saveDraftBtn">Save draft</button><button class="primary" id="scheduleBtn">Schedule content</button></div>
+    <div class="composer-footer"><button class="danger-button" id="deleteContentBtn" hidden>Delete content</button><button class="secondary" id="saveDraftBtn">Save draft</button><button class="primary" id="scheduleBtn">Schedule content</button></div>
   </aside>
 
   <div class="popover notifications" id="notificationPanel"><div class="popover-head"><strong>Notifications</strong><button id="markRead">Mark all read</button></div><div id="notificationList"></div></div>
@@ -166,11 +167,11 @@
     <div class="modal-footer"><button class="secondary" id="cancelInvite">Cancel</button><button class="primary" id="sendInvites">Send invitations</button></div>
   </div>
   <div class="modal" id="workspaceModal">
-    <div class="modal-head"><div><span class="eyebrow">NEW WORKSPACE</span><h2>Create a workspace</h2></div><button class="close-button" id="closeWorkspaceModal">×</button></div>
+    <div class="modal-head"><div><span class="eyebrow" id="workspaceModalEyebrow">NEW WORKSPACE</span><h2 id="workspaceModalTitle">Create a workspace</h2></div><button class="close-button" id="closeWorkspaceModal">×</button></div>
     <div class="modal-body"><label for="newWorkspaceName">Workspace name</label><input id="newWorkspaceName" class="field" placeholder="e.g. Client campaigns" /><label for="newWorkspacePurpose">Purpose <small>optional</small></label><textarea id="newWorkspacePurpose" class="invite-message" placeholder="What will your team create here?"></textarea></div>
     <div class="modal-footer"><button class="secondary" id="cancelWorkspace">Cancel</button><button class="primary" id="saveWorkspace">Create workspace</button></div>
   </div>
-  <script src="app.js?v=6"></script>
-  <script src="supabase-auth.js?v=6"></script>
+  <script src="app.js?v=7"></script>
+  <script src="supabase-auth.js?v=7"></script>
 </body>
 </html>
