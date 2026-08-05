@@ -35,7 +35,7 @@
       <div class="nav-label">WORKSPACE</div>
       <button class="workspace"><span class="workspace-logo">MC</span><span><strong>McBride</strong><small>4 channels connected</small></span><i>⌄</i></button>
       <div class="sidebar-bottom">
-        <button class="nav-item install-app" id="installAppBtn"><span>⇩</span> Install Cornerstone</button>
+        <button class="nav-item install-app" id="installAppBtn" hidden><span>⇩</span> Install Cornerstone</button>
         <button class="nav-item" id="logoutBtn"><span>↪</span> Log out</button>
         <button class="nav-item"><span>?</span> Help center</button>
         <div class="profile"><div class="avatar">AL</div><div><strong>Alex Lin</strong><small>Content lead</small></div><button id="profileMenuBtn" aria-label="Open user settings">•••</button></div>
@@ -141,8 +141,9 @@
     <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow">YOU’VE BEEN INVITED</span><h1>Join <span id="gateWorkspaceName">a workspace</span></h1><p id="gateInviteCopy">Accept your invitation to collaborate on content, campaigns, and publishing.</p><div class="gate-role">Your role <strong id="gateRole">Editor</strong></div><label for="gateName">Your name</label><input id="gateName" class="field" placeholder="Full name" /><label for="gatePassword">Create a password</label><input id="gatePassword" type="password" class="field" autocomplete="new-password" placeholder="At least 12 characters" /><button class="primary" id="acceptInviteBtn">Accept invitation</button><small>By continuing, you agree to your organization’s workspace policies.</small></div>
   </div>
   <div class="invite-gate auth-gate" id="authGate" hidden>
-    <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow" id="authEyebrow">SECURE ACCOUNT SETUP</span><h1 id="authTitle">Create your owner account</h1><p id="authCopy">Set up the first account for this Cornerstone installation.</p><div id="authNameWrap"><label for="authName">Your name</label><input id="authName" class="field" autocomplete="name" placeholder="Full name" /></div><label for="authEmail">Email address</label><input id="authEmail" type="email" class="field" autocomplete="username" placeholder="you@company.com" /><label for="authPassword">Password</label><input id="authPassword" type="password" class="field" autocomplete="current-password" placeholder="At least 12 characters" /><p class="auth-error" id="authError"></p><button class="primary" id="authSubmit">Create account</button><small>Passwords are salted and one-way hashed. They cannot be recovered.</small></div>
+    <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow" id="authEyebrow">SECURE ACCOUNT SETUP</span><h1 id="authTitle">Create your owner account</h1><p id="authCopy">Set up the first account for this Cornerstone installation.</p><div id="authNameWrap"><label for="authName">Your name</label><input id="authName" class="field" autocomplete="name" placeholder="Full name" /></div><label for="authEmail">Email address</label><input id="authEmail" type="email" class="field" autocomplete="username" placeholder="you@company.com" /><label for="authPassword">Password</label><input id="authPassword" type="password" class="field" autocomplete="current-password" placeholder="At least 12 characters" /><p class="auth-error" id="authError"></p><button class="primary" id="authSubmit">Create account</button><button class="auth-switch" id="authSwitch">Already have an account? Sign in</button><small>Passwords are salted and one-way hashed. They cannot be recovered.</small></div>
   </div>
+  <div class="invite-install" id="inviteInstallAction" hidden><div><strong>Install Cornerstone</strong><small>Your invitation grants access to install this workspace app.</small></div><button class="primary" id="inviteInstallBtn">Install app</button><button class="close-button" id="dismissInviteInstall">×</button></div>
   <div class="modal vault-modal" id="vaultModal">
     <div class="modal-head"><div><span class="eyebrow">SECURE CREDENTIAL VAULT</span><h2 id="vaultModalTitle">Create your vault</h2></div><button class="close-button" id="closeVaultModal">×</button></div>
     <div class="modal-body">
@@ -169,6 +170,6 @@
     <div class="modal-body"><label for="newWorkspaceName">Workspace name</label><input id="newWorkspaceName" class="field" placeholder="e.g. Client campaigns" /><label for="newWorkspacePurpose">Purpose <small>optional</small></label><textarea id="newWorkspacePurpose" class="invite-message" placeholder="What will your team create here?"></textarea></div>
     <div class="modal-footer"><button class="secondary" id="cancelWorkspace">Cancel</button><button class="primary" id="saveWorkspace">Create workspace</button></div>
   </div>
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
