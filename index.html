@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="vault.css" />
   <link rel="stylesheet" href="collaboration.css" />
   <link rel="stylesheet" href="install.css" />
+  <link rel="stylesheet" href="auth.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -34,6 +35,7 @@
       <button class="workspace"><span class="workspace-logo">MC</span><span><strong>McBride</strong><small>4 channels connected</small></span><i>⌄</i></button>
       <div class="sidebar-bottom">
         <button class="nav-item install-app" id="installAppBtn"><span>⇩</span> Install Cornerstone</button>
+        <button class="nav-item" id="logoutBtn"><span>↪</span> Log out</button>
         <button class="nav-item"><span>?</span> Help center</button>
         <div class="profile"><div class="avatar">AL</div><div><strong>Alex Lin</strong><small>Content lead</small></div><button>•••</button></div>
       </div>
@@ -124,7 +126,10 @@
   </div>
   <div class="toast" id="toast"><span>✓</span><div><strong id="toastTitle">Content scheduled</strong><small id="toastText">Your post is ready to go.</small></div></div>
   <div class="invite-gate" id="inviteGate" hidden>
-    <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow">YOU’VE BEEN INVITED</span><h1>Join <span id="gateWorkspaceName">a workspace</span></h1><p id="gateInviteCopy">Accept your invitation to collaborate on content, campaigns, and publishing.</p><div class="gate-role">Your role <strong id="gateRole">Editor</strong></div><label for="gateName">Your name</label><input id="gateName" class="field" placeholder="Full name" /><button class="primary" id="acceptInviteBtn">Accept invitation</button><small>By continuing, you agree to your organization’s workspace policies.</small></div>
+    <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow">YOU’VE BEEN INVITED</span><h1>Join <span id="gateWorkspaceName">a workspace</span></h1><p id="gateInviteCopy">Accept your invitation to collaborate on content, campaigns, and publishing.</p><div class="gate-role">Your role <strong id="gateRole">Editor</strong></div><label for="gateName">Your name</label><input id="gateName" class="field" placeholder="Full name" /><label for="gatePassword">Create a password</label><input id="gatePassword" type="password" class="field" autocomplete="new-password" placeholder="At least 12 characters" /><button class="primary" id="acceptInviteBtn">Accept invitation</button><small>By continuing, you agree to your organization’s workspace policies.</small></div>
+  </div>
+  <div class="invite-gate auth-gate" id="authGate" hidden>
+    <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow" id="authEyebrow">SECURE ACCOUNT SETUP</span><h1 id="authTitle">Create your owner account</h1><p id="authCopy">Set up the first account for this Cornerstone installation.</p><div id="authNameWrap"><label for="authName">Your name</label><input id="authName" class="field" autocomplete="name" placeholder="Full name" /></div><label for="authEmail">Email address</label><input id="authEmail" type="email" class="field" autocomplete="username" placeholder="you@company.com" /><label for="authPassword">Password</label><input id="authPassword" type="password" class="field" autocomplete="current-password" placeholder="At least 12 characters" /><p class="auth-error" id="authError"></p><button class="primary" id="authSubmit">Create account</button><small>Passwords are salted and one-way hashed. They cannot be recovered.</small></div>
   </div>
   <div class="modal vault-modal" id="vaultModal">
     <div class="modal-head"><div><span class="eyebrow">SECURE CREDENTIAL VAULT</span><h2 id="vaultModalTitle">Create your vault</h2></div><button class="close-button" id="closeVaultModal">×</button></div>
