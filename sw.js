@@ -1,4 +1,4 @@
-const CACHE='cornerstone-v8.1';
+const CACHE='cornerstone-v8.2';
 const ASSETS=['./','./index.html','./style.css','./brand.css','./integrations.css','./vault.css','./collaboration.css','./install.css','./auth.css','./settings.css','./management.css','./tutorial.css','./account-install.css','./app.js','./supabase-auth.js','./mcbride-banner.png','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
