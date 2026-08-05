@@ -288,4 +288,4 @@ function closeTutorial(completed=false){clearTutorialFocus();$('#tutorialOverlay
 $('#nextTutorial').onclick=()=>{if(tutorialIndex<tutorialSteps.length-1){tutorialIndex++;renderTutorialStep()}else{closeTutorial(true);switchView('calendar');showToast('Tutorial complete','You’re ready to build your first content workflow.')}};$('#previousTutorial').onclick=()=>{if(tutorialIndex>0){tutorialIndex--;renderTutorialStep()}};$('#skipTutorial').onclick=()=>closeTutorial(false);$('#closeTutorial').onclick=()=>closeTutorial(false);$('#helpCenterBtn').onclick=()=>startTutorial(true);
 const onboardingSetAuthSession=setAuthSession;setAuthSession=function(user){onboardingSetAuthSession(user);setTimeout(()=>startTutorial(false),250)};
 const accountInstallButton=$('#installAppBtn');if(accountInstallButton){accountInstallButton.hidden=false;accountInstallButton.className='secondary account-install-button';accountInstallButton.innerHTML='⇩ Install Cornerstone on this device';const accountForm=$('[data-settings-panel="account"] .settings-form');if(accountForm)accountForm.appendChild(accountInstallButton)}
-refresh();
+refresh();window.CORNERSTONE_BUILD='8.3';
