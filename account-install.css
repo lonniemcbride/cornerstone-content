@@ -1,0 +1,1 @@
+#installAppBtn[hidden]{display:none!important}.account-install-button{display:block!important;width:100%;margin-top:10px}.account-install-button::before{content:"Account access · ";color:var(--muted);font-size:9px}

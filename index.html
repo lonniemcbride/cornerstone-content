@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="auth.css?v=3" />
   <link rel="stylesheet" href="settings.css?v=4" />
   <link rel="stylesheet" href="management.css?v=7" />
+  <link rel="stylesheet" href="tutorial.css?v=8" />
+  <link rel="stylesheet" href="account-install.css?v=8" />
 </head>
 <body>
   <div class="app-shell">
@@ -38,7 +40,7 @@
       <div class="sidebar-bottom">
         <button class="nav-item install-app" id="installAppBtn" hidden><span>⇩</span> Install Cornerstone</button>
         <button class="nav-item" id="logoutBtn"><span>↪</span> Log out</button>
-        <button class="nav-item"><span>?</span> Help center</button>
+        <button class="nav-item" id="helpCenterBtn"><span>?</span> Help & tutorial</button>
         <div class="profile"><div class="avatar">AL</div><div><strong>Alex Lin</strong><small>Content lead</small></div><button id="profileMenuBtn" aria-label="Open user settings">•••</button></div>
       </div>
     </aside>
@@ -145,6 +147,9 @@
     <div class="invite-gate-card"><div class="gate-brand"><span class="brand-mark">C</span><strong>Cornerstone</strong></div><span class="eyebrow" id="authEyebrow">SECURE ACCOUNT SETUP</span><h1 id="authTitle">Create your owner account</h1><p id="authCopy">Set up the first account for this Cornerstone installation.</p><div id="authNameWrap"><label for="authName">Your name</label><input id="authName" class="field" autocomplete="name" placeholder="Full name" /></div><label for="authEmail">Email address</label><input id="authEmail" type="email" class="field" autocomplete="username" placeholder="you@company.com" /><label for="authPassword">Password</label><input id="authPassword" type="password" class="field" autocomplete="current-password" placeholder="At least 12 characters" /><p class="auth-error" id="authError"></p><button class="primary" id="authSubmit">Create account</button><button class="auth-switch" id="authSwitch">Already have an account? Sign in</button><small>Passwords are salted and one-way hashed. They cannot be recovered.</small></div>
   </div>
   <div class="invite-install" id="inviteInstallAction" hidden><div><strong>Install Cornerstone</strong><small>Your invitation grants access to install this workspace app.</small></div><button class="primary" id="inviteInstallBtn">Install app</button><button class="close-button" id="dismissInviteInstall">×</button></div>
+  <div class="tutorial-overlay" id="tutorialOverlay" hidden>
+    <div class="tutorial-card"><div class="tutorial-top"><span class="eyebrow">GETTING STARTED</span><button class="close-button" id="closeTutorial">×</button></div><div class="tutorial-visual" id="tutorialVisual">01</div><h2 id="tutorialTitle">Welcome to Cornerstone</h2><p id="tutorialCopy">Let’s set up your content workflow together.</p><div class="tutorial-tip" id="tutorialTip"></div><div class="tutorial-progress" id="tutorialProgress"></div><div class="tutorial-actions"><button class="text-button" id="skipTutorial">Skip for now</button><button class="secondary" id="previousTutorial">Back</button><button class="primary" id="nextTutorial">Next</button></div></div>
+  </div>
   <div class="modal vault-modal" id="vaultModal">
     <div class="modal-head"><div><span class="eyebrow">SECURE CREDENTIAL VAULT</span><h2 id="vaultModalTitle">Create your vault</h2></div><button class="close-button" id="closeVaultModal">×</button></div>
     <div class="modal-body">
@@ -171,7 +176,7 @@
     <div class="modal-body"><label for="newWorkspaceName">Workspace name</label><input id="newWorkspaceName" class="field" placeholder="e.g. Client campaigns" /><label for="newWorkspacePurpose">Purpose <small>optional</small></label><textarea id="newWorkspacePurpose" class="invite-message" placeholder="What will your team create here?"></textarea></div>
     <div class="modal-footer"><button class="secondary" id="cancelWorkspace">Cancel</button><button class="primary" id="saveWorkspace">Create workspace</button></div>
   </div>
-  <script src="app.js?v=7"></script>
-  <script src="supabase-auth.js?v=7"></script>
+  <script src="app.js?v=8.1"></script>
+  <script src="supabase-auth.js?v=8.1"></script>
 </body>
 </html>
